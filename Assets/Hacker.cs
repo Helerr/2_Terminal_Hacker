@@ -8,7 +8,7 @@ public class Hacker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        ShowMainMenu("Ted");
+        ShowMainMenu();
     }
 
     void ShowMainMenu()
