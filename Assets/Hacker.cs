@@ -25,16 +25,31 @@ public class Hacker : MonoBehaviour
     public int count = 0;
     void OnUserInput(string input)
     {
-        if ( input == "007") {
+        if ( input == "007") 
+        {
             Terminal.WriteLine("Please choose your level Mr. Bond!");
         }
-        else if (input == "420") {
+        else if (input == "420") 
+        {
             Terminal.WriteLine("Blaze it! No need to rush, choose your level when you're done.");
         } 
         else if (input == "1")
         {
-            Terminal.WriteLine("You chose level 1");
-        } else if (input == "menu")
+            StartGame(1);
+        } 
+        else if (input == "2")
+        {
+            StartGame(2);
+        } 
+        else if (input == "3")
+        {
+            StartGame(3);
+        }
+        else if (input=="4")
+        {
+            ReadBackstory();
+        }
+        else if (input == "menu")
         {
             ShowMainMenu();
         }
@@ -49,6 +64,16 @@ public class Hacker : MonoBehaviour
                 count = 0;
             }
         }
+    }
+
+    void StartGame(int level)
+    {
+        Terminal.WriteLine("You have chosen level " + level);
+    }
+
+    void ReadBackstory()
+    {
+        Terminal.WriteLine("You chose to read your backstory.Coming right up!");
     }
     // Update is called once per frame
     void Update()
