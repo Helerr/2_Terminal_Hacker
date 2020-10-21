@@ -50,13 +50,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Hacker.cs" />
      <Compile Include="Assets\WM2000\Terminal\Terminal.cs" />
      <Compile Include="Assets\WM2000\Utility.cs" />
      <Compile Include="Assets\WM2000\Keyboard\Keyboard.cs" />
      <Compile Include="Assets\WM2000\Terminal\DisplayBuffer.cs" />
      <Compile Include="Assets\WM2000\Display\Display.cs" />
      <Compile Include="Assets\WM2000\Terminal\InputBuffer.cs" />
-     <Compile Include="Assets\Hacker.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/allee/Desktop/Unity/2_Terminal_Hacker/2_Terminal_Hacker/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
