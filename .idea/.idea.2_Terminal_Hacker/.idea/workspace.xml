@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bb5aec27-9602-4405-a3a7-805086b7137b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Assets/Hacker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hacker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/SceneVisibilityState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/SceneVisibilityState.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1603281828364</updated>
       <workItem from="1603281839554" duration="2461000" />
-      <workItem from="1603285853943" duration="6539000" />
+      <workItem from="1603285853943" duration="6893000" />
     </task>
     <servers />
   </component>

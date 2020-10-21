@@ -4,7 +4,10 @@ using UnityEditor.Experimental;
 using UnityEngine;
 
 public class Hacker : MonoBehaviour
-{
+{    
+    //game state
+    int count = 0;
+    int level;
     // Start is called before the first frame update
     void Start()
     {   
@@ -21,8 +24,7 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("Do you need a backstory? Press 4");
         Terminal.WriteLine("Enter your selection: ");
     }
-
-    public int count = 0;
+    
     void OnUserInput(string input)
     {
         if ( input == "007") 
@@ -35,15 +37,18 @@ public class Hacker : MonoBehaviour
         } 
         else if (input == "1")
         {
-            StartGame(1);
+            level = 1;
+            StartGame();
         } 
         else if (input == "2")
         {
-            StartGame(2);
+            level = 2;
+            StartGame();
         } 
         else if (input == "3")
         {
-            StartGame(3);
+            level = 3;
+            StartGame();
         }
         else if (input=="4")
         {
@@ -66,7 +71,7 @@ public class Hacker : MonoBehaviour
         }
     }
 
-    void StartGame(int level)
+    void StartGame()
     {
         Terminal.WriteLine("You have chosen level " + level);
     }
