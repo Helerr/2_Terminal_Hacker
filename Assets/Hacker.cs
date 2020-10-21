@@ -6,7 +6,7 @@ public class Hacker : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         ShowMainMenu("Ted");
         
     }
@@ -24,12 +24,20 @@ public class Hacker : MonoBehaviour
     }
     void OnUserInput(string input)
     {
-        if ( input == "1")
-        {
-            Terminal.WriteLine("True");
+        if ( input == "007") {
+            Terminal.WriteLine("Please choose your level Mr. Bond");
         }
-        else
+        else if (input == "420") {
+            Terminal.WriteLine("Blaze it! No need to rush, choose your level when you're done.");
+        } 
+        else if (input == "1")
         {
+            Terminal.WriteLine("You chose level 1");
+        } else if (input == "menu")
+        {
+            ShowMainMenu("Ted");
+        }
+        else {
             Terminal.WriteLine("False");
         }
     }
