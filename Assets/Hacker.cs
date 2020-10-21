@@ -21,9 +21,10 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("Do you need a backstory? Press 4");
         Terminal.WriteLine("Enter your selection: ");
     }
+
+    public int count = 0;
     void OnUserInput(string input)
     {
-        var count = 0;
         if ( input == "007") {
             Terminal.WriteLine("Please choose your level Mr. Bond!");
         }
@@ -40,12 +41,13 @@ public class Hacker : MonoBehaviour
         else {
             Terminal.WriteLine("Please choose a valid level.");
             count+=1;
-            /*if (count == 3)
+            if (count == 3)
             {
                 ShowMainMenu();
                 Terminal.WriteLine("You must be dense. Please read the main menu again.CAREFULLY!");
                 Terminal.WriteLine("CHOOSE FROM THE LEVELS LISTED ABOVE!");
-            }*/
+                count = 0;
+            }
         }
     }
     // Update is called once per frame
