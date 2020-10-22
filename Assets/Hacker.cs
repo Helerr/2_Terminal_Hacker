@@ -62,6 +62,12 @@ public class Hacker : MonoBehaviour
 
     void RunMainMenu(string input)
     {
+        bool isValidLevel = (input == "1" || input == "2" || input == "3");
+        if (isValidLevel)
+        {
+            level = int.Parse(input);
+            StartGame();
+        }
         if (input == "007")
         {
             Terminal.WriteLine("Please choose your level Mr. Bond!");
@@ -69,24 +75,6 @@ public class Hacker : MonoBehaviour
         else if (input == "420")
         {
             Terminal.WriteLine("Blaze it! No need to rush, choose your level when you're done.");
-        }
-        else if (input == "1")
-        {
-            level = 1;
-            password = level1Passwords[0]; //TODO Make random later
-            StartGame();
-        }
-        else if (input == "2")
-        {
-            level = 2;
-            password = level2Passwords[0];//TODO Make random later
-            StartGame();
-        }
-        else if (input == "3")
-        {
-            level = 3;
-            password = level3Passwords[0]; //TODO Make random later
-            StartGame();
         }
         else if (input == "4")
         {
@@ -108,10 +96,24 @@ public class Hacker : MonoBehaviour
 
     void StartGame()
     {
-        Terminal.ClearScreen();
-        Terminal.WriteLine("You have chosen level " + level);
-        Terminal.WriteLine("Please enter your password:");
         _currentScreen = Screen.Password;
+        Terminal.ClearScreen();
+        switch (level)
+        {
+            case 1:
+                password = level1Passwords[0];
+                break;
+            case 2:
+                password = level2Passwords[0];
+                break;
+            case 3:
+                password = level3Passwords[0];
+                break;
+            default:
+                Debug.LogError("Invalid level number");
+                break;
+        }
+        Terminal.WriteLine("Please enter your password:");
     }
 
     void ReadBackstory()
