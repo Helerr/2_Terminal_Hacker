@@ -45,6 +45,10 @@ public class Hacker : MonoBehaviour
         {
             RunMainMenu(input);
         }
+        else if (_currentScreen == Screen.Password)
+        {
+            PassChecker(input);
+        }
         
     }
 
@@ -93,6 +97,7 @@ public class Hacker : MonoBehaviour
 
     void StartGame()
     {
+        Terminal.ClearScreen();
         Terminal.WriteLine("You have chosen level " + level);
         Terminal.WriteLine("Please enter your password:");
         _currentScreen = Screen.Password;
@@ -101,6 +106,29 @@ public class Hacker : MonoBehaviour
     void ReadBackstory()
     {
         Terminal.WriteLine("You chose to read your backstory.Coming right up!");
+    }
+
+    void PassChecker(string password)
+    {
+        if (password == "easypass" && level==1)
+        {
+            Terminal.ClearScreen();
+            Terminal.WriteLine("Congratulations! You've cracked it!");
+        } 
+        else if (password == "mediumpass" && level == 2)
+        {
+            Terminal.ClearScreen();
+            Terminal.WriteLine("Congratulations! You've cracked it!");
+        }
+        else if (password == "hardpass" && level==3)
+        {
+            Terminal.ClearScreen();
+            Terminal.WriteLine("Congratulations! You've cracked it!");
+        }
+        else
+        {
+            Terminal.WriteLine("The password is incorrect. Please try again!");
+        }
     }
     // Update is called once per frame
     void Update()
