@@ -15,6 +15,8 @@ public class Hacker : MonoBehaviour
         Win
     };
 
+    string password;
+
     Screen _currentScreen;
     // Start is called before the first frame update
     void Start()
@@ -65,16 +67,19 @@ public class Hacker : MonoBehaviour
         else if (input == "1")
         {
             level = 1;
+            password = "easypass";
             StartGame();
         }
         else if (input == "2")
         {
             level = 2;
+            password = "mediumpass";
             StartGame();
         }
         else if (input == "3")
         {
             level = 3;
+            password = "hardpass";
             StartGame();
         }
         else if (input == "4")
@@ -108,19 +113,19 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("You chose to read your backstory.Coming right up!");
     }
 
-    void PassChecker(string password)
+    void PassChecker(string input)
     {
-        if (password == "easypass" && level==1)
+        if (input== password && level==1)
         {
             Terminal.ClearScreen();
             Terminal.WriteLine("Congratulations! You've cracked it!");
         } 
-        else if (password == "mediumpass" && level == 2)
+        else if (input == password && level == 2)
         {
             Terminal.ClearScreen();
             Terminal.WriteLine("Congratulations! You've cracked it!");
         }
-        else if (password == "hardpass" && level==3)
+        else if (input == password && level==3)
         {
             Terminal.ClearScreen();
             Terminal.WriteLine("Congratulations! You've cracked it!");
