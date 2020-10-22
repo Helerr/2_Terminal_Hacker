@@ -44,10 +44,10 @@ public class Hacker : MonoBehaviour
     
     void OnUserInput(string input)
     {
-        
         if (input == "menu")
         {
             ShowMainMenu();
+            count = 0;
         }
         else if (_currentScreen == Screen.MainMenu)
         {
@@ -82,8 +82,7 @@ public class Hacker : MonoBehaviour
         }
         else
         {
-            Terminal.WriteLine("Please choose a valid level.");
-            count+=1;
+            count+=1; 
             if (count == 3)
             {
                 ShowMainMenu();
