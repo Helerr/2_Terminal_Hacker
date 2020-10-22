@@ -7,7 +7,15 @@ public class Hacker : MonoBehaviour
 {    
     //game state
     int count = 0;
-    int level;
+    int level; 
+    enum Screen
+    {
+        MainMenu,
+        Password,
+        Win
+    };
+
+    Screen _currentScreen;
     // Start is called before the first frame update
     void Start()
     {   
@@ -23,42 +31,54 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("Press 3 for the All Knowing Organization");
         Terminal.WriteLine("Do you need a backstory? Press 4");
         Terminal.WriteLine("Enter your selection: ");
+        _currentScreen = Screen.MainMenu;
     }
     
     void OnUserInput(string input)
     {
-        if ( input == "007") 
+        
+        if (input == "menu")
+        {
+            ShowMainMenu();
+        }
+        else if (_currentScreen == Screen.MainMenu)
+        {
+            RunMainMenu(input);
+        }
+        
+    }
+
+    void RunMainMenu(string input)
+    {
+        if (input == "007")
         {
             Terminal.WriteLine("Please choose your level Mr. Bond!");
         }
-        else if (input == "420") 
+        else if (input == "420")
         {
             Terminal.WriteLine("Blaze it! No need to rush, choose your level when you're done.");
-        } 
+        }
         else if (input == "1")
         {
             level = 1;
             StartGame();
-        } 
+        }
         else if (input == "2")
         {
             level = 2;
             StartGame();
-        } 
+        }
         else if (input == "3")
         {
             level = 3;
             StartGame();
         }
-        else if (input=="4")
+        else if (input == "4")
         {
             ReadBackstory();
         }
-        else if (input == "menu")
+        else
         {
-            ShowMainMenu();
-        }
-        else {
             Terminal.WriteLine("Please choose a valid level.");
             count+=1;
             if (count == 3)
@@ -74,6 +94,8 @@ public class Hacker : MonoBehaviour
     void StartGame()
     {
         Terminal.WriteLine("You have chosen level " + level);
+        Terminal.WriteLine("Please enter your password:");
+        _currentScreen = Screen.Password;
     }
 
     void ReadBackstory()
