@@ -38,7 +38,7 @@ public class Hacker : MonoBehaviour
     void ShowMainMenu()
     {    
         Terminal.ClearScreen();
-        Terminal.WriteLine("We need someone to hack into various facilities. Can you do it?");
+        Terminal.WriteLine("What would you like to hack?");
         Terminal.WriteLine("Press 1 for the Daily Life Corp.");
         Terminal.WriteLine("Press 2 for the AMD Computers");
         Terminal.WriteLine("Press 3 for the All Knowing Organization");
@@ -54,6 +54,11 @@ public class Hacker : MonoBehaviour
             ShowMainMenu();
             count = 0;
             page = 0;
+        }
+        else if(input=="close" || input=="quit" || input=="exit")
+        {
+            Terminal.WriteLine("If you're on the web,close the tab.");
+            Application.Quit();
         }
         else if (_currentScreen == Screen.MainMenu)
         {
@@ -78,26 +83,30 @@ public class Hacker : MonoBehaviour
             level = int.Parse(input);
             AskForPassword();
         }
-        else
-        {
-            Terminal.WriteLine("Please choose a valid level!");
-        }
-        if (input == "007")
+        else if (input == "007")
         {
             Terminal.WriteLine("Please choose your level Mr. Bond!");
         }
         else if (input == "420")
         {
             Terminal.WriteLine("Blaze it! No need to rush, choose your level when you're done.");
+        } else if (input == "dog")
+        {
+            Terminal.WriteLine(@"Woof Woof!
+,-.___,-.
+\_/_ _\_/
+  )O_O(
+ { (_) }
+  `-^-'  ");
         }
         else
         {
+            Terminal.WriteLine("Please choose a valid level.");
             count+=1; 
             if (count == 3)
             {
                 ShowMainMenu();
-                Terminal.WriteLine("You must be dense. Please read the main menu again.CAREFULLY!");
-                Terminal.WriteLine("CHOOSE FROM THE LEVELS LISTED ABOVE!");
+                Terminal.WriteLine("Please read the main menu again.CAREFULLY! :)");
                 count = 0;
             }
         }
@@ -167,7 +176,7 @@ public class Hacker : MonoBehaviour
         switch (level)
         {
             case 1:
-                Terminal.WriteLine("Have some ramen...");
+                Terminal.WriteLine("Congratulations! Have some ramen...");
                 Terminal.WriteLine(@"
          |
          |  /
@@ -179,7 +188,7 @@ public class Hacker : MonoBehaviour
 ");
                 break;
             case 2:
-                Terminal.WriteLine("The processors are heating up...");
+                Terminal.WriteLine("You did it!...Are those fireworks?");
                 Terminal.WriteLine(@"
 .--.
 |__| .-------.
@@ -190,7 +199,7 @@ public class Hacker : MonoBehaviour
 ");
                 break;
             case 3:
-                Terminal.WriteLine("YOU ARE ALL KNOWING! THE HUMANITY IS BOWING BEFORE YOU...");
+                Terminal.WriteLine("Congrats! That was some evil corporation...");
                 Terminal.WriteLine(@"
       ___                       
  __  |'''|  __                   
