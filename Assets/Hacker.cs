@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Hacker : MonoBehaviour
 {    
@@ -9,7 +6,13 @@ public class Hacker : MonoBehaviour
     string[] level1Passwords = {"food", "walk","drink","dog","cat","animal" };
     string[] level2Passwords = {"processor", "memory", "cooler", "graphics", "interface"};
     string[] level3Passwords = {"frequency", "intranet", "network", "rocket", "speakers"};
-    
+    int page = 0;
+    string[] storyLine =
+    {
+        "We need someone to hack into the following facilities. Our budget is very limited and this is why we turned to you.", 
+        "The more facilities you manage to break in, the more funding we'll raise. This is the moment to prove yourself and maybe you'll get richer than you ever dreamed.",
+        "We managed to find some clues about the passwords but were unable to figure everything out. Can you do it for us? Type menu and choose a level!"
+    };
     
     //game state
     int count = 0;
@@ -18,7 +21,8 @@ public class Hacker : MonoBehaviour
     {
         MainMenu,
         Password,
-        Win
+        Win,
+        Story
     };
 
     string password;
@@ -48,6 +52,7 @@ public class Hacker : MonoBehaviour
         {
             ShowMainMenu();
             count = 0;
+            page = 0;
         }
         else if (_currentScreen == Screen.MainMenu)
         {
@@ -56,6 +61,10 @@ public class Hacker : MonoBehaviour
         else if (_currentScreen == Screen.Password)
         {
             PassChecker(input);
+        } else if (_currentScreen == Screen.Story)
+        {
+            Terminal.ClearScreen();
+            ReadStory(storyLine,page);
         }
         
     }
@@ -80,10 +89,6 @@ public class Hacker : MonoBehaviour
         {
             Terminal.WriteLine("Blaze it! No need to rush, choose your level when you're done.");
         }
-        else if (input == "4")
-        {
-            ReadBackstory();
-        }
         else
         {
             count+=1; 
@@ -99,56 +104,108 @@ public class Hacker : MonoBehaviour
 
     void StartGame()
     {
+        
         _currentScreen = Screen.Password;
         Terminal.ClearScreen();
         switch (level)
         {
             case 1:
-                password = level1Passwords[0];
+                password =level1Passwords[Random.Range(0, level1Passwords.Length)];
                 break;
             case 2:
-                password = level2Passwords[0];
+                password = level2Passwords[Random.Range(0,level2Passwords.Length)];
                 break;
             case 3:
-                password = level3Passwords[0];
+                password = level3Passwords[Random.Range(0, level3Passwords.Length)];
+                break;
+            case 4:
+                _currentScreen = Screen.Story;
+                ReadStory(storyLine,page);
                 break;
             default:
                 Debug.LogError("Invalid level number");
                 break;
         }
-        Terminal.WriteLine("Please enter your password:");
+        Terminal.WriteLine("Please enter your password:"); //TODO Fix this showing on story screen
     }
-
-    void ReadBackstory()
-    {
-        Terminal.WriteLine("You chose to read your backstory.Coming right up!");
-    }
-
     void PassChecker(string input)
     {
-        if (input== password && level==1)
+        if (input == password)
         {
-            Terminal.ClearScreen();
-            Terminal.WriteLine("Congratulations! You've cracked it!");
-        } 
-        else if (input == password && level == 2)
-        {
-            Terminal.ClearScreen();
-            Terminal.WriteLine("Congratulations! You've cracked it!");
-        }
-        else if (input == password && level==3)
-        {
-            Terminal.ClearScreen();
-            Terminal.WriteLine("Congratulations! You've cracked it!");
+            DisplayWinScreen();
         }
         else
         {
             Terminal.WriteLine("The password is incorrect. Please try again!");
         }
     }
+
+    void DisplayWinScreen()
+    {
+        _currentScreen = Screen.Win;
+        Terminal.ClearScreen();
+        ShowLevelReward();
+    }
+
+    void ShowLevelReward()
+    {
+        switch (level)
+        {
+            case 1:
+                Terminal.WriteLine("Have some ramen...");
+                Terminal.WriteLine(@"
+         |
+         |  /
+         | /
+   .~^(,&|/o.
+  |`-------^|
+  \         /
+   `======='  
+");
+                break;
+            case 2:
+                Terminal.WriteLine("The processors are heating up...");
+                Terminal.WriteLine(@"
+.--.
+|__| .-------.
+|=.| |.-----.|
+|--| || AMD ||
+|  | |'-----'|
+|__|~')_____('
+");
+                break;
+            case 3:
+                Terminal.WriteLine("YOU ARE ALL KNOWING! THE HUMANITY IS BOWING BEFORE YOU...");
+                Terminal.WriteLine(@"
+      ___                       
+ __  |'''|  __                   
+|''| |'''| |''|       
+|''| |'''| |''|     
+|''| |'''| |''|      
+---------------
+");
+                break;
+            case 4:
+                break;
+            default:
+                Debug.LogError("Invalid level reached");
+                break;
+            
+        }
+        
+    }
+
+    void ReadStory(string[] chapter,int index)
+    {
+        Terminal.ClearScreen();
+        Terminal.WriteLine(chapter[index]);
+        page++;
+
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        /*var index = Random.Range(0, level1Passwords.Length);
+        print(level1Passwords[index]);*/
     }
 }
