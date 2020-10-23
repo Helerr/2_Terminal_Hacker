@@ -75,7 +75,7 @@ public class Hacker : MonoBehaviour
         if (isValidLevel)
         {
             level = int.Parse(input);
-            StartGame();
+            AskForPassword();
         }
         else
         {
@@ -102,31 +102,43 @@ public class Hacker : MonoBehaviour
         }
     }
 
-    void StartGame()
+    void AskForPassword()
     {
         
         _currentScreen = Screen.Password;
         Terminal.ClearScreen();
+        SetRandomPassword();
+    }
+
+    private void SetRandomPassword()
+    {
         switch (level)
         {
             case 1:
-                password =level1Passwords[Random.Range(0, level1Passwords.Length)];
+                password = level1Passwords[Random.Range(0, level1Passwords.Length)];
+                DisplayPasswordAnagram();
                 break;
             case 2:
-                password = level2Passwords[Random.Range(0,level2Passwords.Length)];
+                password = level2Passwords[Random.Range(0, level2Passwords.Length)];
+                DisplayPasswordAnagram();
                 break;
             case 3:
                 password = level3Passwords[Random.Range(0, level3Passwords.Length)];
+                DisplayPasswordAnagram();
                 break;
             case 4:
                 _currentScreen = Screen.Story;
-                ReadStory(storyLine,page);
+                ReadStory(storyLine, page);
                 break;
             default:
                 Debug.LogError("Invalid level number");
                 break;
         }
-        Terminal.WriteLine("Please enter your password:"); //TODO Fix this showing on story screen
+    }
+
+    void DisplayPasswordAnagram()
+    {
+        Terminal.WriteLine("Enter your password: " + password.Anagram());
     }
     void PassChecker(string input)
     {
@@ -136,7 +148,7 @@ public class Hacker : MonoBehaviour
         }
         else
         {
-            Terminal.WriteLine("The password is incorrect. Please try again!");
+            AskForPassword();
         }
     }
 
