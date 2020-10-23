@@ -62,11 +62,15 @@ public class Hacker : MonoBehaviour
 
     void RunMainMenu(string input)
     {
-        bool isValidLevel = (input == "1" || input == "2" || input == "3");
+        bool isValidLevel = (input == "1" || input == "2" || input == "3" || input=="4");
         if (isValidLevel)
         {
             level = int.Parse(input);
             StartGame();
+        }
+        else
+        {
+            Terminal.WriteLine("Please choose a valid level!");
         }
         if (input == "007")
         {
