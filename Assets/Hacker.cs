@@ -13,7 +13,8 @@ public class Hacker : MonoBehaviour
         "The more facilities you manage to break in, the more funding we'll raise. This is the moment to prove yourself and maybe you'll get richer than you ever dreamed.",
         "We managed to find some clues about the passwords but were unable to figure everything out. Can you do it for us? Type menu and choose a level!"
     };
-    
+
+    const string menuHint = "You may type \"menu\" at any time.";
     //game state
     int count = 0;
     int level; 
@@ -108,6 +109,7 @@ public class Hacker : MonoBehaviour
         _currentScreen = Screen.Password;
         Terminal.ClearScreen();
         SetRandomPassword();
+        Terminal.WriteLine(menuHint);
     }
 
     private void SetRandomPassword()
@@ -157,6 +159,7 @@ public class Hacker : MonoBehaviour
         _currentScreen = Screen.Win;
         Terminal.ClearScreen();
         ShowLevelReward();
+        Terminal.WriteLine(menuHint);
     }
 
     void ShowLevelReward()
@@ -211,6 +214,8 @@ public class Hacker : MonoBehaviour
     {
         Terminal.ClearScreen();
         Terminal.WriteLine(chapter[index]);
+        Terminal.WriteLine(menuHint);
+        Terminal.WriteLine("Type \"next\" to keep reading.");
         page++;
 
     }
